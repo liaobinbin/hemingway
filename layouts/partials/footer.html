@@ -7,6 +7,23 @@
 {{ range .Site.Params.highlight.languages }}
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/languages/{{ . }}.min.js"></script>
 {{ end }}
+{{ with $.Site.Params.comment }} {{ if eq .type "valine"}}
+<script type="text/javascript" src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+ new Valine( {
+     el: "#comment",
+     notify: false,
+     verify: false,
+     appId: "{{ .valine.id }}",
+     appKey: "{{ .valine.key }}",
+     placeholder: "{{ .valine.placeholder }}",
+     path: window.location.pathname,
+     avatar: "{{ .valine.avatar }}"
+ });
+</script>
+
+{{end}}{{end}}
 <script>hljs.initHighlightingOnLoad();</script>
 {{ if .Site.GoogleAnalytics }}
 {{ template "_internal/google_analytics_async.html" . }}

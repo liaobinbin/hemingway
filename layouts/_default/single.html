@@ -9,5 +9,9 @@
     </div>
   </div>
 </section>
+{{ with $.Site.Params.comment }} {{ if eq .type "valine"}}
+{{ partial "valine" . }}
+{{ else }}
 {{ partial "disqus" . }}
+{{ end }} {{ end }}
 {{ partial "footer" . }}
